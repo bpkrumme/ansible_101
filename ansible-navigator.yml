@@ -1,0 +1,19 @@
+---
+ansible-navigator:
+  ansible:
+    inventory:
+      entries:
+        - ./inventory
+  execution-environment:
+    container-engine: podman
+    enabled: true
+    image: ghcr.io/ansible/community-ansible-dev-tools:latest
+    pull:
+      policy: missing
+  logging:
+    append: true
+    level: warning
+  mode: stdout
+  playbook-artifact:
+    enable: false
+
