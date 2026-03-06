@@ -1,0 +1,24 @@
+---
+- name: Demonstrate plugins
+  hosts: localhost
+  tasks:
+    - name: Look up and print inventory hostnames in uppercase
+      ansible.builtin.debug:
+        msg: "{{ lookup('ansible.builtin.inventory_hostnames', 'podman') | upper }}"
+      tags:
+        - never
+        - inventory_lookup
+
+    - name: Show unencoded ansible_facts
+      ansible.builtin.debug:
+        msg: "{{ ansible_facts }}"
+      tags:
+        - never
+        - showfacts
+
+    - name: Encode ansible_facts as Base64
+      ansible.builtin.debug:
+        msg: "{{ ansible_facts | ansible.builtin.b64encode }}"
+      tags:
+        - never
+        - encodefacts
