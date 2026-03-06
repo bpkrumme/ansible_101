@@ -1,0 +1,33 @@
+---
+httpd_install_type: podman
+httpd_index_path: /var/www/html
+httpd_enabled_state: true
+podman_create_host_directories: true
+podman_firewall:
+  - port: 8080/tcp
+    state: enabled
+podman_selinux_ports:
+  - ports: 80
+    setype: http_port_t
+    state: present
+podman_kube_specs:
+  - state: started
+    kube_file_content:
+      apiVersion: v1
+      kind: Pod
+      metadata:
+        name: fedora-httpd-24
+      spec:
+        containers:
+          - name: fedora-httpd-24
+            image: quay.io/fedora/httpd-24
+            ports:
+              - containerPort: 8080
+                hostPort: 80
+            volumeMounts:
+              - mountPath: /var/www/html:Z
+                name: fedora-html
+        volumes:
+          - name: fedora-html
+            hostPath:
+              path: /var/www/html

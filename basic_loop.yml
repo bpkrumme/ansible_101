@@ -1,0 +1,5 @@
+---
+- name: Demonstrate using loops
+  hosts: all
+  tasks:
+    ## TODO Create the peter, paul, and mary users

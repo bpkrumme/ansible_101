@@ -1,0 +1,11 @@
+---
+- name: Install a basic Apache HTTPD server
+  hosts: local
+  tasks:
+    ## TODO Install the HTTPD Server
+
+    ## TODO Start and enable the httpd service
+
+    ## TODO Put some content on the server
+
+    ## TODO Ensure the firewall is open

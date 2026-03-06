@@ -1,0 +1,38 @@
+---
+- name: Install and configure local httpd server
+  hosts: local
+  tasks:
+    - name: Manage the httpd package
+      ansible.builtin.package:
+        name: "{{ httpd_package_name }}"
+        state: "{{ httpd_package_state }}"
+
+    - name: Create our index.html content
+      ansible.builtin.template:
+        src: templates/index.html.j2
+        dest: "{{ httpd_index_path }}/index.html"
+        mode: "0644"
+      notify: Restart httpd
+      when: httpd_enabled_state
+
+    - name: Remove the index.html content
+      ansible.builtin.file:
+        path: "{{ httpd_index_path }}/index.html"
+        state: absent
+      when: not httpd_enabled_state
+
+    - name: Manage the httpd service
+      ansible.builtin.service:
+        name: "{{ httpd_service_name }}"
+        state: "{{ httpd_service_state }}"
+        enabled: "{{ httpd_enabled_state }}"
+
+    - name: Manage the firewall for http requests
+      ansible.builtin.include_role:
+        name: fedora.linux_system_roles.firewall
+
+  handlers:
+    - name: Restart httpd
+      ansible.builtin.service:
+        name: "{{ httpd_service_name }}"
+        state: restarted

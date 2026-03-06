@@ -1,0 +1,11 @@
+---
+httpd_install_type: local
+httpd_package_name: httpd
+httpd_package_state: present
+httpd_service_name: httpd
+httpd_service_state: started
+httpd_enabled_state: true
+httpd_index_path: /var/www/html
+firewall:
+  - service: http
+    state: enabled

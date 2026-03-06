@@ -1,0 +1,5 @@
+---
+- name: Demonstrate conditionals
+  hosts: all
+  tasks:
+    ## TODO Print message if host is in the local group

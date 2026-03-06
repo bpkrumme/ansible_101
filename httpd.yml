@@ -1,0 +1,8 @@
+---
+- name: Install and configure HTTPD server locally
+  ansible.builtin.import_playbook: "local_httpd.yml"
+  when: httpd_install_type == "local"
+
+- name: Install and configure HTTPD server using podman
+  ansible.builtin.import_playbook: "podman_httpd.yml"
+  when: httpd_install_type == "podman"
