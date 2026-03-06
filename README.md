@@ -14,5 +14,5 @@ Be sure to install the dependent collections which are included in collections/r
 - Conditionals
 - Variables
 - Facts
-- Roles
+- Roles/Collections
 - Playbook Delegation
