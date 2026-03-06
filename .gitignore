@@ -2,3 +2,4 @@ ansible.cfg
 .ansible
 logs
 collections/ansible_collections
+ansible-navigator.log
