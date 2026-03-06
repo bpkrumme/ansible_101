@@ -1,3 +1,4 @@
 ansible.cfg
 .ansible
 logs
+collections/ansible_collections
