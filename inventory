@@ -1,5 +1,5 @@
 [local]
-localweb.bk.local
+localweb.bk.local ansible_host=192.168.122.211
 
 [podman]
-podmanweb.bk.local
+podmanweb.bk.local ansible_host=192.168.122.20

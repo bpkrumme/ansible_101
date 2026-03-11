@@ -1,5 +1,23 @@
 ---
-- name: Demonstrate using loops
+- name: Create the peter, paul, and mary users
   hosts: all
   tasks:
-    ## TODO Create the peter, paul, and mary users
+    - name: Create peter user
+      ansible.builtin.user:
+        name: peter
+        uid: 1000
+        state: present
+
+    - name: Create paul user
+      ansible.builtin.user:
+        name: paul
+        uid: 1001
+        state: present
+
+    - name: Create peter user
+      ansible.builtin.user:
+        name: mary
+        uid: 1002
+        state: present
+
+  ## TODO - Combine these tasks into a single task
